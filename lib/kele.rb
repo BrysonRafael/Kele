@@ -1,10 +1,12 @@
 require 'kele'
+require "httparty"
 
-class Client
+class Kele
   include HTTParty
 
   def initialize(email, password)
-    response = self.class.post(base_api_endpoint + "/sessions", body: {
+    @base_api_endpoint = "https://www.bloc.io/api/v1"
+    response = self.class.post(@base_api_endpoint + "/sessions", body: {
       email: email,
       password: password
     })
