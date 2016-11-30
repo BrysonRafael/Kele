@@ -1,21 +1,21 @@
 module Kele
   module Roadmap
-    def get_roadmap
-      roadmap_id = get_me["current_enrollment"]["roadmap_id"]
-
+    def get_roadmap(id)
       response = self.class.get(
-        @base_api_endpoint + "/roadmaps/#{ roadmap_id }",
+        @base_api_endpoint + "/roadmaps/#{ id }",
         headers: { "authorization" => @auth_token }
       )
+      
       JSON.parse(response.body)
     end
 
-    def get_checkpoint
-      checkpoint_id = get_roadmap["checkpoint_id"]
-
+    def get_checkpoint(id)
       response = self.class.get(
-        @base_api_endpoint + ""
+        @base_api_endpoint + "/checkpoints/#{ id }",
+        headers: { "authorization" => @auth_token }
       )
+
+      JSON.parse(response.body)
     end
   end
 end
