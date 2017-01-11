@@ -4,6 +4,7 @@ module Kele
     include Kele::Roadmap
 
     def initialize(email, password)
+      @email = email
       @base_api_endpoint = "https://www.bloc.io/api/v1"
       response = self.class.post(@base_api_endpoint + "/sessions", body: {
         email: email,
@@ -29,6 +30,31 @@ module Kele
         headers: { "authorization" => @auth_token }
       )
       JSON.parse(response.body)
+    end
+
+    def get_messages
+      response = self.class.get(
+        @base_api_endpoint + "/message_threads",
+        headers: { "authorization" => @auth_token }
+      )
+      JSON.parse(response.body)
+    end
+
+    def create_message(subject, stripped_text)
+      sender = @email
+      recipient_id = get_me["current_enrollment"]["mentor_id"]
+      #stripped_text = ?
+      response = self.class.post(
+        @base_api_endpoint + "/messages",
+        headers: { "authorization" => @auth_token },
+        body: {
+          "sender" => sender,
+          "recipient_id" => recipient_id,
+          "subject" => subject,
+          "stripped-text" => stripped_text
+        }
+      )
+      response
     end
   end
 end
