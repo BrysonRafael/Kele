@@ -58,9 +58,7 @@ module Kele
     end
 
     def create_submission(checkpoint_id, assignment_branch, assignment_commit_link, comment)
-      
-    end
-
+      #enrollment_id = 
     end
   end
 end
