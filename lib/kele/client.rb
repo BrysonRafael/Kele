@@ -43,7 +43,6 @@ module Kele
     def create_message(subject, stripped_text)
       sender = @email
       recipient_id = get_me["current_enrollment"]["mentor_id"]
-      #stripped_text = ?
       response = self.class.post(
         @base_api_endpoint + "/messages",
         headers: { "authorization" => @auth_token },
@@ -58,7 +57,20 @@ module Kele
     end
 
     def create_submission(checkpoint_id, assignment_branch, assignment_commit_link, comment)
-      #enrollment_id = 
+      enrollment_id = 20871
+      sender = @email
+      recipient_id = get_me["current_enrollment"]["mentor_id"]
+      response = self.class.post(
+        @base_api_endpoint + "/checkpoint_submissions",
+        headers: { "authorization" => @auth_token },
+        body: {
+          "sender" => sender,
+          "recipient_id" => recipient_id,
+          "subject" => subject,
+          "stripped-text" => stripped_text
+        }
+      )
+      response
     end
   end
 end
