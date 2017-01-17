@@ -66,8 +66,10 @@ module Kele
         body: {
           "sender" => sender,
           "recipient_id" => recipient_id,
-          "subject" => subject,
-          "stripped-text" => stripped_text
+          "checkpoint_id" => checkpoint_id,
+          "assignment_branch" => assignment_branch,
+          "assignment_commit_link" => assignment_commit_link,
+          "comment" => comment
         }
       )
       response
