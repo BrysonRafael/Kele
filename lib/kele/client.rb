@@ -57,7 +57,7 @@ module Kele
     end
 
     def create_submission(checkpoint_id, assignment_branch, assignment_commit_link, comment)
-      enrollment_id = "20871"
+      enrollment_id = 20871
       sender = @email
       recipient_id = get_me["current_enrollment"]["mentor_id"]
       response = self.class.post(
